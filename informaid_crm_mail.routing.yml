@@ -1,0 +1,7 @@
+informaid_crm_mail.campaign:
+  path: '/informaid-crm-mail/campaign'
+  defaults:
+    _title: 'Emails Campaign'
+    _form: 'Drupal\informaid_crm_mail\Form\CampaignForm'
+  requirements:
+    _permission: 'Generate CRM e-mailing'

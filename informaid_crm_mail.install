@@ -1,0 +1,153 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the informaid_crm_mail module.
+ */
+
+/**
+ * Implements hook_schema().
+ *
+ * Creates the tables inf_crm_mail_emails and inf_crm_mail_campaign.
+ */
+function informaid_crm_mail_schema() {
+  // Campaign info.
+  $schema['inf_crm_mail_campaign'] = [
+    'description' => 'Stores the campaign.',
+    'fields' => [
+      'id' => [
+        'description' => 'The campaign ID',
+        'type' => 'serial',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'description' => 'The user uid who has sent the mail.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'label' => [
+        'description' => 'The campaign label.',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'aliases' => [
+        'description' => 'The aliases criterias.',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'detail' => [
+        'description' => 'The detail criteria.',
+        'type' => 'varchar',
+        'length' => '64',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'subject' => [
+        'description' => 'The campaign mails subject.',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'body' => [
+        'description' => 'The campaign emails body.',
+        'type' => 'text',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'created' => [
+        'description' => 'The datetime when the campaign was sent.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['id'],
+
+  ];
+  // Campaign history.
+  $schema['inf_crm_mail_mails'] = [
+    'description' => 'Stores sent emails: created date, destination contact, destination email.',
+    'fields' => [
+      'id' => [
+        'description' => 'The email ID',
+        'type' => 'serial',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'campaign_id' => [
+        'description' => 'The campaign ID.',
+        'type' => 'int',
+        'not null' => FALSE,
+        'default' => 0,
+      ],
+      'contact_id' => [
+        'description' => 'The crm Contact ID who the mail was sent to.',
+        'type' => 'int',
+        'not null' => FALSE,
+        'default' => 0,
+      ],
+      'contact_email' => [
+        'description' => 'The CRM contact email the mail was sent to.',
+        'type' => 'varchar',
+        'length' => '64',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'contact_name' => [
+        'description' => 'The contact name.',
+        'type' => 'varchar',
+        'length' => '128',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'contact_bundle' => [
+        'description' => 'The contact bundle.',
+        'type' => 'varchar',
+        'length' => '35',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'subject' => [
+        'description' => 'The mail subject.',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'body' => [
+        'description' => 'The email body sent.',
+        'type' => 'text',
+        'not null' => FALSE,
+        'default' => '',
+      ],
+      'sent' => [
+        'description' => 'Was the email sent ? 0 = No, 1 = yes.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'created' => [
+        'description' => 'The datetime when the registration was done.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'campaign' => ['campaign_id'],
+      'contact' => ['contact_id'],
+    ],
+  ];
+
+  return $schema;
+}

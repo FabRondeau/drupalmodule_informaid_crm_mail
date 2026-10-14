@@ -1,0 +1,7 @@
+name: 'informaid_crm_mail'
+type: module
+description: 'Send mails to the CRM contacts.'
+package: INFORMAID
+core_version_requirement: ^10 || ^11
+dependencies:
+  - crm:crm

@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Functions for informaid_crm_mail module.
+ */
+
+/**
+ * Implements hook_mail().
+ */
+function informaid_crm_mail_mail($key, &$message, $params) {
+  $message['subject'] = $params['subject'];
+  $message['body'] = $params['body'];
+  // $message['headers'] = $params['headers'];
+  // dump('hook_mail -> message', $message);
+}

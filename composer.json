@@ -1,0 +1,13 @@
+{
+    "name": "informaid/informaid_crm_mail",
+    "description": "CRM mailing for Drupal CRM module.",
+    "type": "drupal-custom-module",
+    "authors": [
+        {
+            "name": "Fabienne RONDEAU",
+            "email": "contact@informaid.fr"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
